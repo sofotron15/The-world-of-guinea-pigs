@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐹 Мир морских свинок</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF9A76;
+            --secondary: #8B572A;
+            --accent: #A5D6A7;
+            --light: #FFF9F0;
+            --dark: #5A4B41;
+            --highlight: #FFD166;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #fff9f0 0%, #fff 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Контейнер с боковыми полями */
+        .page-wrapper {
+            max-width: 1200px; /* Уже чем было (было 1400px) */
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+        }
+        
+        /* Боковые декоративные панели */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 120px; /* Уже чем было (было 150px) */
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            pointer-events: none;
+        }
+        
+        .side-left {
+            left: 0;
+        }
+        
+        .side-right {
+            right: 0;
+        }
+        
+        .side-emoji {
+            font-size: 35px; /* Меньше чем было (было 40px) */
+            animation: sideFloat 6s ease-in-out infinite;
+            opacity: 0.15;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+        
+        .side-emoji-large {
+            font-size: 50px; /* Меньше чем было (было 60px) */
+            animation: sideFloat 8s ease-in-out infinite;
+        }
+        
+        @keyframes sideFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) rotate(-5deg) scale(1.1); }
+            50% { transform: translateY(5px) rotate(5deg) scale(0.9); }
+            75% { transform: translateY(-10px) rotate(3deg) scale(1.05); }
+        }
+        
+        /* Декоративные элементы по бокам - РАЗБРОСАННЫЕ */
+        .decoration {
+            position: fixed;
+            z-index: 1;
+            opacity: 0.08;
+            pointer-events: none;
+            font-size: 24px; /* Меньше чем было (было 28px) */
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* Больше разнообразных позиций для смайликов */
+        .guinea-1 { top: 8%; left: 2%; animation-delay: 0s; }
+        .guinea-2 { top: 18%; right: 4%; animation-delay: 2s; }
+        .guinea-3 { bottom: 15%; left: 3%; animation-delay: 4s; }
+        .guinea-4 { bottom: 25%; right: 2%; animation-delay: 6s; }
+        .carrot-1 { top: 12%; left: 1%; animation-delay: 1s; }
+        .carrot-2 { top: 45%; right: 3%; animation-delay: 3s; }
+        .veggie-1 { top: 65%; left: 2%; animation-delay: 5s; }
+        .veggie-2 { top: 75%; right: 4%; animation-delay: 7s; }
+        .apple-1 { top: 35%; left: 1%; animation-delay: 0.5s; }
+        .apple-2 { bottom: 35%; right: 1%; animation-delay: 2.5s; }
+        .lettuce-1 { top: 55%; right: 2%; animation-delay: 1.5s; }
+        .lettuce-2 { bottom: 45%; left: 2%; animation-delay: 3.5s; }
+        .heart-1 { top: 22%; left: 5%; animation-delay: 0.7s; font-size: 20px; }
+        .heart-2 { top: 68%; right: 5%; animation-delay: 4.2s; font-size: 20px; }
+        .star-1 { top: 28%; right: 8%; animation-delay: 1.2s; font-size: 22px; }
+        .star-2 { bottom: 28%; left: 5%; animation-delay: 5.8s; font-size: 22px; }
+        .paw-1 { top: 42%; left: 3%; animation-delay: 1.8s; font-size: 28px; }
+        .paw-2 { bottom: 52%; right: 6%; animation-delay: 3.2s; font-size: 28px; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(8deg) scale(1.05); }
+        }
+        
+        /* Тонкий контейнер */
+        .container {
+            max-width: 1000px; /* Уже чем было (было 1100px) */
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(139, 87, 42, 0.15);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            border: 8px solid white;
+        }
+        
+        /* Шапка */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary), #FFB347);
+            color: white;
+            padding: 25px 30px; /* Меньше вертикальные отступы */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-guinea {
+            width: 90px; /* Меньше чем было (было 100px) */
+            height: 90px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #FFD166, #FFB347);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px; /* Меньше чем было (было 50px) */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border: 5px solid white; /* Тоньше чем было (было 6px) */
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .header-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Меньше чем было (было 20px) */
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        
+        .header-emoji {
+            font-size: 20px; /* Меньше чем было (было 24px) */
+            animation: wiggle 3s infinite;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        h1 {
+            font-size: 2.2rem; /* Меньше чем было (было 2.5rem) */
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem; /* Меньше чем было (было 1.2rem) */
+            opacity: 0.9;
+            max-width: 650px; /* Уже чем было (было 700px) */
+            margin: 0 auto;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+        }
+        
+        /* Поиск */
+        .search-section {
+            padding: 25px 30px; /* Меньше вертикальные отступы */
+            background: var(--light);
+            border-bottom: 4px solid var(--accent);
+            position: relative;
+        }
+        
+        .search-emoji-decor {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            font-size: 24px; /* Меньше чем было (было 28px) */
+            opacity: 0.3;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 550px; /* Уже чем было (было 600px) */
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 16px 20px 16px 50px; /* Меньше отступы */
+            font-size: 1rem; /* Меньше чем было (было 1.1rem) */
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(139, 87, 42, 0.15);
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 15px 35px rgba(139, 87, 42, 0.25);
+            transform: translateY(-3px);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px; /* Ближе к краю */
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem; /* Меньше чем было (было 1.4rem) */
+        }
+        
+        .search-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px; /* Меньше чем было (было 10px) */
+            justify-content: center;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+        }
+        
+        .tag {
+            background: white;
+            padding: 6px 16px; /* Меньше отступы */
+            border-radius: 25px;
+            font-size: 0.85rem; /* Меньше чем было (было 0.9rem) */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 6px; /* Меньше чем было (было 8px) */
+        }
+        
+        .tag:hover, .tag.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 154, 118, 0.3);
+        }
+        
+        /* Основное содержимое */
+        .main-content {
+            padding: 25px; /* Меньше чем было (было 30px) */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px; /* Меньше чем было (было 30px) */
+            min-height: 1200px;
+            position: relative;
+        }
+        
+        .content-emoji-decor {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px; /* Меньше чем было (было 22px) */
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Меньше чем было (было 15px) */
+            margin-bottom: 20px;
+            color: var(--secondary);
+            font-size: 1.5rem; /* Меньше чем было (было 1.6rem) */
+            padding: 12px 20px; /* Меньше отступы */
+            background: linear-gradient(135deg, rgba(255, 154, 118, 0.15), rgba(255, 179, 71, 0.15));
+            border-radius: 20px;
+            border-left: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title::before {
+            content: "✨";
+            position: absolute;
+            right: 15px; /* Ближе к краю */
+            opacity: 0.3;
+        }
+        
+        .section-title i {
+            color: var(--primary);
+            font-size: 1.2rem; /* Меньше чем было (было 1.4rem) */
+        }
+        
+        /* Сетка пород */
+        .breeds-section {
+            max-height: 1100px;
+            overflow-y: auto;
+            padding-right: 12px; /* Меньше чем было (было 15px) */
+            position: relative;
+        }
+        
+        .breeds-section::after {
+            content: "🐹🐹🐹";
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            font-size: 14px; /* Меньше чем было (было 16px) */
+            opacity: 0.1;
+        }
+        
+        .breeds-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px; /* Меньше чем было (было 20px) */
+        }
+        
+        .breed-card {
+            background: white;
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(139, 87, 42, 0.1);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .breed-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 87, 42, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .breed-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(255, 154, 118, 0.25);
+            transform: translateY(-5px);
+        }
+        
+        .breed-emoji {
+            position: absolute;
+            top: 8px; /* Ближе к краю */
+            left: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 32px; /* Меньше чем было (было 35px) */
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px; /* Меньше чем было (было 18px) */
+            z-index: 2;
+        }
+        
+        .breed-image {
+            height: 150px; /* Меньше чем было (было 160px) */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .breed-type {
+            position: absolute;
+            top: 12px; /* Ближе к краю */
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px 12px; /* Меньше отступы */
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            font-size: 0.75rem; /* Меньше чем было (было 0.8rem) */
+            font-weight: 700;
+            color: var(--secondary);
+            backdrop-filter: blur(10px);
+        }
+        
+        .breed-info {
+            padding: 18px; /* Меньше чем было (было 20px) */
+        }
+        
+        .breed-name {
+            font-size: 1.3rem; /* Меньше чем было (было 1.4rem) */
+            color: var(--secondary);
+            margin-bottom: 8px; /* Меньше чем было (было 10px) */
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Меньше чем было (было 12px) */
+        }
+        
+        .breed-description {
+            color: #666;
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            font-size: 0.9rem; /* Меньше чем было (было 0.95rem) */
+            line-height: 1.5;
+        }
+        
+        .breed-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; /* Меньше чем было (было 12px) */
+            font-size: 0.85rem; /* Меньше чем было (было 0.9rem) */
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem; /* Меньше чем было (было 1rem) */
+        }
+        
+        .stat-label {
+            font-size: 0.75rem; /* Меньше чем было (было 0.8rem) */
+            color: #888;
+        }
+        
+        /* Детали породы */
+        .breed-detail-section {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            padding: 22px; /* Меньше чем было (было 25px) */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            height: fit-content;
+            position: relative;
+        }
+        
+        .detail-emoji-decor {
+            position: absolute;
+            top: 15px;
+            right: 18px; /* Ближе к краю */
+            font-size: 22px; /* Меньше чем было (было 24px) */
+            opacity: 0.2;
+        }
+        
+        .detail-header {
+            margin-bottom: 20px; /* Меньше чем было (было 25px) */
+        }
+        
+        .detail-title {
+            font-size: 1.8rem; /* Меньше чем было (было 2rem) */
+            color: var(--secondary);
+            margin-bottom: 8px; /* Меньше чем было (было 10px) */
+        }
+        
+        .breed-tags {
+            display: flex;
+            gap: 8px; /* Меньше чем было (было 10px) */
+            margin-top: 12px; /* Меньше чем было (было 15px) */
+            flex-wrap: wrap;
+        }
+        
+        .breed-tag {
+            background: var(--light);
+            padding: 5px 12px; /* Меньше отступы */
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            font-size: 0.8rem; /* Меньше чем было (было 0.85rem) */
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px; /* Меньше чем было (было 5px) */
+        }
+        
+        .detail-image {
+            height: 180px; /* Меньше чем было (было 200px) */
+            background-size: cover;
+            background-position: center;
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            margin-bottom: 20px; /* Меньше чем было (было 25px) */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .detail-image::before {
+            content: "🐹";
+            position: absolute;
+            bottom: 8px; /* Ближе к краю */
+            right: 8px;
+            font-size: 22px; /* Меньше чем было (было 24px) */
+            opacity: 0.3;
+        }
+        
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px; /* Меньше чем было (было 25px) */
+        }
+        
+        .detail-column {
+            position: relative;
+        }
+        
+        .detail-column::before {
+            content: "⭐";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            font-size: 14px; /* Меньше чем было (было 16px) */
+            opacity: 0.3;
+        }
+        
+        .detail-column h3 {
+            color: var(--secondary);
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            padding-bottom: 8px; /* Меньше чем было (было 10px) */
+            border-bottom: 3px solid var(--accent);
+            font-size: 1.2rem; /* Меньше чем было (было 1.3rem) */
+        }
+        
+        .characteristics-list, .care-list {
+            list-style: none;
+            font-size: 0.9rem; /* Меньше чем было (было 0.95rem) */
+        }
+        
+        .characteristics-list li, .care-list li {
+            padding: 10px 0; /* Меньше чем было (было 12px) */
+            border-bottom: 2px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .characteristics-list li::before, .care-list li::before {
+            content: "•";
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        .characteristics-list li:last-child, .care-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .characteristics-list li span:first-child, .care-list li span:first-child {
+            color: #666;
+            flex: 1;
+        }
+        
+        .characteristics-list li span:last-child, .care-list li span:last-child {
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: right;
+            flex: 1;
+        }
+        
+        /* Секция аксессуаров */
+        .accessories-section {
+            padding: 25px 30px; /* Меньше вертикальные отступы */
+            background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
+            border-top: 4px solid #64b5f6;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .accessories-section::before {
+            content: "🛍️";
+            position: absolute;
+            top: 15px;
+            left: 25px; /* Ближе к краю */
+            font-size: 24px; /* Меньше чем было (было 28px) */
+            opacity: 0.1;
+        }
+        
+        .accessories-filters {
+            display: flex;
+            gap: 12px; /* Меньше чем было (было 15px) */
+            margin-bottom: 20px; /* Меньше чем было (было 25px) */
+            flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 12px; /* Меньше чем было (было 15px) */
+        }
+        
+        .accessory-filter-btn {
+            padding: 8px 16px; /* Меньше отступы */
+            border: none;
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            background: #e3f2fd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #1565c0;
+            font-size: 0.85rem; /* Меньше чем было (было 0.9rem) */
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px; /* Меньше чем было (было 8px) */
+        }
+        
+        .accessory-filter-btn.active {
+            background: #64b5f6;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(100, 181, 246, 0.3);
+        }
+        
+        .accessory-filter-btn:hover:not(.active) {
+            background: #bbdefb;
+            transform: translateY(-2px);
+        }
+        
+        .accessories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Уже карточки */
+            gap: 22px; /* Меньше чем было (было 25px) */
+        }
+        
+        .accessory-card {
+            background: white;
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .accessory-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .accessory-emoji {
+            position: absolute;
+            top: 8px; /* Ближе к краю */
+            left: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 32px; /* Меньше чем было (было 35px) */
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px; /* Меньше чем было (было 18px) */
+            z-index: 2;
+        }
+        
+        .accessory-image {
+            height: 150px; /* Меньше чем было (было 160px) */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .accessory-brand {
+            position: absolute;
+            top: 12px; /* Ближе к краю */
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px 12px; /* Меньше отступы */
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            font-size: 0.75rem; /* Меньше чем было (было 0.8rem) */
+            font-weight: 700;
+            color: #1565c0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .accessory-info {
+            padding: 18px; /* Меньше чем было (было 20px) */
+        }
+        
+        .accessory-name {
+            font-size: 1.2rem; /* Меньше чем было (было 1.3rem) */
+            color: #1565c0;
+            margin-bottom: 8px; /* Меньше чем было (было 10px) */
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Меньше чем было (было 10px) */
+        }
+        
+        .accessory-description {
+            color: #666;
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            font-size: 0.9rem; /* Меньше чем было (было 0.95rem) */
+            line-height: 1.5;
+        }
+        
+        .accessory-details {
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+        }
+        
+        .accessory-details h4 {
+            color: #1565c0;
+            margin-bottom: 6px; /* Меньше чем было (было 8px) */
+            font-size: 0.9rem; /* Меньше чем было (было 0.95rem) */
+        }
+        
+        .details-list {
+            list-style: none;
+            font-size: 0.85rem; /* Меньше чем было (было 0.9rem) */
+        }
+        
+        .details-list li {
+            padding: 4px 0; /* Меньше чем было (было 5px) */
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .details-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .accessory-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px; /* Меньше чем было (было 8px) */
+        }
+        
+        .accessory-feature {
+            background: #e3f2fd;
+            padding: 4px 10px; /* Меньше отступы */
+            border-radius: 14px; /* Меньше чем было (было 15px) */
+            font-size: 0.8rem; /* Меньше чем было (было 0.85rem) */
+        }
+        
+        /* Секция подписки */
+        .subscription-section {
+            background: linear-gradient(135deg, #FFE0B2 0%, #FFECB3 100%);
+            padding: 40px 25px; /* Меньше отступы */
+            margin-top: 20px;
+            border-top: 6px solid var(--primary); /* Тоньше чем было (было 8px) */
+            border-bottom: 6px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscription-section::before {
+            content: "📱🎥🐹";
+            position: absolute;
+            top: 15px; /* Ближе к краю */
+            left: 15px;
+            font-size: 35px; /* Меньше чем было (было 40px) */
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .subscription-section::after {
+            content: "❤️✨🌟";
+            position: absolute;
+            bottom: 15px; /* Ближе к краю */
+            right: 15px;
+            font-size: 35px; /* Меньше чем было (было 40px) */
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .subscription-content {
+            max-width: 1000px; /* Уже чем было (было 1200px) */
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subscription-header {
+            text-align: center;
+            margin-bottom: 30px; /* Меньше чем было (было 40px) */
+        }
+        
+        .subscription-title {
+            font-size: 2.2rem; /* Меньше чем было (было 2.5rem) */
+            color: var(--secondary);
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subscription-emoji {
+            font-size: 1.8rem; /* Меньше чем было (было 2rem) */
+            margin: 12px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        .subscription-subtitle {
+            font-size: 1.1rem; /* Меньше чем было (было 1.2rem) */
+            color: #666;
+            max-width: 550px; /* Уже чем было (было 600px) */
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 12px;
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            border: 2px dashed var(--accent);
+        }
+        
+        .social-platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Уже карточки */
+            gap: 25px; /* Меньше чем было (было 30px) */
+            margin-bottom: 30px; /* Меньше чем было (было 40px) */
+        }
+        
+        .platform-card {
+            background: white;
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            padding: 25px; /* Меньше чем было (было 30px) */
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .likee-card:hover {
+            border-color: #FF0066;
+        }
+        
+        .youtube-card:hover {
+            border-color: #FF0000;
+        }
+        
+        .platform-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px; /* Тоньше чем было (было 8px) */
+        }
+        
+        .likee-card::before {
+            background: linear-gradient(90deg, #FF0066, #FF66B3);
+        }
+        
+        .youtube-card::before {
+            background: linear-gradient(90deg, #FF0000, #FF6666);
+        }
+        
+        .platform-icon {
+            width: 70px; /* Меньше чем было (было 80px) */
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2.2rem; /* Меньше чем было (было 2.5rem) */
+        }
+        
+        .likee-card .platform-icon {
+            background: linear-gradient(135deg, #FF0066, #FF66B3);
+            color: white;
+        }
+        
+        .youtube-card .platform-icon {
+            background: linear-gradient(135deg, #FF0000, #FF6666);
+            color: white;
+        }
+        
+        .platform-title {
+            font-size: 1.6rem; /* Меньше чем было (было 1.8rem) */
+            color: var(--secondary);
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+        }
+        
+        .platform-desc {
+            color: #666;
+            margin-bottom: 15px; /* Меньше чем было (было 20px) */
+            line-height: 1.5;
+        }
+        
+        .platform-id {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; /* Меньше чем было (было 10px) */
+            background: var(--light);
+            padding: 10px 20px; /* Меньше отступы */
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            margin-bottom: 20px; /* Меньше чем было (было 25px) */
+            font-weight: 600;
+            color: var(--secondary);
+            border: 2px solid var(--accent);
+        }
+        
+        .platform-id i {
+            color: var(--primary);
+        }
+        
+        .subscribe-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Меньше чем было (было 12px) */
+            padding: 12px 25px; /* Меньше отступы */
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            font-size: 1rem; /* Меньше чем было (было 1.1rem) */
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .likee-btn {
+            background: linear-gradient(135deg, #FF0066, #FF66B3);
+            color: white;
+        }
+        
+        .youtube-btn {
+            background: linear-gradient(135deg, #FF0000, #FF6666);
+            color: white;
+        }
+        
+        .subscribe-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .subscription-note {
+            text-align: center;
+            background: white;
+            padding: 22px; /* Меньше чем было (было 25px) */
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            margin-top: 25px; /* Меньше чем было (было 30px) */
+            border: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscription-note::before {
+            content: "🎬✨🌟";
+            position: absolute;
+            top: 8px; /* Ближе к краю */
+            right: 8px;
+            opacity: 0.1;
+            font-size: 22px; /* Меньше чем было (было 24px) */
+        }
+        
+        .subscription-note p {
+            font-size: 1.1rem; /* Меньше чем было (было 1.2rem) */
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        /* Футер */
+        .creator-footer {
+            background: linear-gradient(135deg, #FFE0B2, #FFB347);
+            padding: 30px 25px; /* Меньше отступы */
+            text-align: center;
+            border-top: 4px solid var(--secondary);
+            position: relative;
+        }
+        
+        .footer-emoji-decor {
+            position: absolute;
+            top: 15px; /* Ближе к краю */
+            left: 25px;
+            font-size: 22px; /* Меньше чем было (было 24px) */
+            opacity: 0.3;
+        }
+        
+        .creator-container {
+            max-width: 550px; /* Уже чем было (было 600px) */
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 22px; /* Меньше чем было (было 25px) */
+            padding: 25px; /* Меньше чем было (было 30px) */
+            box-shadow: 0 15px 35px rgba(139, 87, 42, 0.2);
+        }
+        
+        .creator-title {
+            font-size: 1.6rem; /* Меньше чем было (было 1.8rem) */
+            color: var(--secondary);
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px; /* Меньше чем было (было 15px) */
+        }
+        
+        .creator-subtitle {
+            color: #666;
+            font-size: 1rem; /* Меньше чем было (было 1.1rem) */
+            margin-bottom: 15px; /* Меньше чем было (было 20px) */
+        }
+        
+        .creator-info {
+            text-align: center;
+        }
+        
+        .creator-name {
+            font-size: 1.4rem; /* Меньше чем было (было 1.6rem) */
+            color: var(--secondary);
+            margin-bottom: 6px; /* Меньше чем было (было 8px) */
+        }
+        
+        .creator-role {
+            font-size: 1.1rem; /* Меньше чем было (было 1.2rem) */
+            color: var(--primary);
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            font-weight: 600;
+        }
+        
+        .creator-bio {
+            color: #666;
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            line-height: 1.6;
+            font-size: 0.95rem; /* Меньше чем было (было 1rem) */
+        }
+        
+        .creator-signature {
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.3rem; /* Меньше чем было (было 1.5rem) */
+            color: var(--secondary);
+            margin-top: 15px; /* Меньше чем было (было 20px) */
+            padding-top: 15px; /* Меньше чем было (было 20px) */
+            border-top: 3px dashed var(--accent);
+        }
+        
+        /* Дополнительные элементы для заполнения пространства */
+        .fun-facts {
+            background: var(--light);
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            padding: 18px; /* Меньше чем было (было 20px) */
+            margin: 18px 0; /* Меньше чем было (было 20px) */
+            text-align: center;
+            border: 2px dashed var(--accent);
+        }
+        
+        .fun-facts h3 {
+            color: var(--secondary);
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            font-size: 1.1rem; /* Меньше чем было (было 1.2rem) */
+        }
+        
+        .facts-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px; /* Меньше чем было (было 15px) */
+            flex-wrap: wrap;
+        }
+        
+        .fact {
+            background: white;
+            padding: 8px 12px; /* Меньше отступы */
+            border-radius: 14px; /* Меньше чем было (было 15px) */
+            font-size: 0.85rem; /* Меньше чем было (было 0.9rem) */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        /* Результаты поиска */
+        .search-results {
+            background: white;
+            border-radius: 18px; /* Меньше чем было (было 20px) */
+            padding: 18px; /* Меньше чем было (было 20px) */
+            margin-top: 18px; /* Меньше чем было (было 20px) */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .search-results.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .results-count {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 12px; /* Меньше чем было (было 15px) */
+            font-size: 1rem; /* Меньше чем было (было 1.1rem) */
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 35px; /* Меньше чем было (было 40px) */
+            color: #666;
+        }
+        
+        .no-results i {
+            font-size: 2.5rem; /* Меньше чем было (было 3rem) */
+            color: #ddd;
+            margin-bottom: 15px; /* Меньше чем было (было 20px) */
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1400px) {
+            .side-panel {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 1100px) {
+            .container {
+                max-width: 95%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-wrapper {
+                padding: 10px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .breeds-section {
+                max-height: none;
+            }
+            
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .accessories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-platforms {
+                grid-template-columns: 1fr;
+            }
+            
+            .subscription-title {
+                font-size: 1.8rem; /* Меньше чем было (было 2rem) */
+            }
+            
+            h1 {
+                font-size: 1.8rem; /* Меньше чем было (было 2rem) */
+            }
+            
+            .header-guinea {
+                width: 70px; /* Меньше чем было (было 80px) */
+                height: 70px;
+                font-size: 35px; /* Меньше чем было (было 40px) */
+            }
+            
+            .decoration {
+                font-size: 20px; /* Меньше чем было (было 24px) */
+            }
+            
+            .header-decoration {
+                gap: 12px; /* Меньше чем было (было 15px) */
+            }
+            
+            .platform-card {
+                padding: 20px; /* Меньше чем было (было 25px) */
+            }
+        }
+        
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px; /* Уже чем было (было 8px) */
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Анимации */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Боковые панели со смайликами -->
+    <div class="side-panel side-left">
+        <div class="side-emoji side-emoji-large" style="animation-delay: 0s;">🐹</div>
+        <div class="side-emoji" style="animation-delay: 1s;">🥕</div>
+        <div class="side-emoji side-emoji-large" style="animation-delay: 2s;">✨</div>
+        <div class="side-emoji" style="animation-delay: 3s;">❤️</div>
+        <div class="side-emoji side-emoji-large" style="animation-delay: 4s;">🐹</div>
+        <div class="side-emoji" style="animation-delay: 5s;">🌟</div>
+    </div>
+    
+    <div class="side-panel side-right">
+        <div class="side-emoji side-emoji-large" style="animation-delay: 0.5s;">🦛</div>
+        <div class="side-emoji" style="animation-delay: 1.5s;">🥬</div>
+        <div class="side-emoji side-emoji-large" style="animation-delay: 2.5s;">🐹</div>
+        <div class="side-emoji" style="animation-delay: 3.5s;">🎉</div>
+        <div class="side-emoji side-emoji-large" style="animation-delay: 4.5s;">⭐</div>
+        <div class="side-emoji" style="animation-delay: 5.5s;">🐾</div>
+    </div>
+    
+    <!-- Декоративные элементы -->
+    <div class="decoration guinea-1">🐹</div>
+    <div class="decoration guinea-2">🐹</div>
+    <div class="decoration guinea-3">🐹</div>
+    <div class="decoration guinea-4">🐹</div>
+    <div class="decoration carrot-1">🥕</div>
+    <div class="decoration carrot-2">🥕</div>
+    <div class="decoration veggie-1">🥒</div>
+    <div class="decoration veggie-2">🥬</div>
+    <div class="decoration apple-1">🍎</div>
+    <div class="decoration apple-2">🍏</div>
+    <div class="decoration lettuce-1">🥬</div>
+    <div class="decoration lettuce-2">🥗</div>
+    <div class="decoration heart-1">❤️</div>
+    <div class="decoration heart-2">💖</div>
+    <div class="decoration star-1">⭐</div>
+    <div class="decoration star-2">✨</div>
+    <div class="decoration paw-1">🐾</div>
+    <div class="decoration paw-2">🐾</div>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <!-- Шапка -->
+            <header class="main-header">
+                <div class="header-guinea">🐹</div>
+                <div class="header-decoration">
+                    <span class="header-emoji">✨</span>
+                    <span class="header-emoji">🎉</span>
+                    <span class="header-emoji">🐹</span>
+                    <span class="header-emoji">❤️</span>
+                    <span class="header-emoji">⭐</span>
+                </div>
+                <h1>🐹 Мир морских свинок 🎉</h1>
+                <p class="subtitle">🎊 Откройте для себя все породы, аксессуары и всё для счастливой жизни питомца! 🥳</p>
+            </header>
+            
+            <!-- Поиск -->
+            <section class="search-section">
+                <div class="search-emoji-decor">🔍</div>
+                <div class="search-container">
+                    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Ищите породу, корм или аксессуар...">
+                    <div class="search-icon"><i class="fas fa-search"></i></div>
+                </div>
+                
+                <div class="search-tags">
+                    <div class="tag" data-filter="длинношерстные">✨ Длинношерстные</div>
+                    <div class="tag" data-filter="короткошерстные">⚡ Короткошерстные</div>
+                    <div class="tag" data-filter="бесшерстные">🦛 Бесшерстные</div>
+                    <div class="tag" data-filter="розеточные">🌀 Розеточные</div>
+                    <div class="tag" data-filter="для начинающих">🌟 Для начинающих</div>
+                    <div class="tag" data-filter="редкие">💎 Редкие</div>
+                </div>
+                
+                <div class="search-results" id="searchResults">
+                    <div class="results-count" id="resultsCount">🎯 Найдено: 0</div>
+                    <div id="resultsList"></div>
+                </div>
+            </section>
+            
+            <!-- Основной контент -->
+            <div class="main-content">
+                <div class="content-emoji-decor">🐹 🥕 🥬 🍎 🐹</div>
+                
+                <!-- Секция пород -->
+                <section class="breeds-section">
+                    <div class="section-title">
+                        <i class="fas fa-kiwi-bird"></i>
+                        <h2>🎪 Породы морских свинок 🎪</h2>
+                    </div>
+                    
+                    <div class="breeds-grid" id="breedsGrid">
+                        <!-- Породы будут загружены через JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Секция деталей породы -->
+                <section class="breed-detail-section" id="breedDetail">
+                    <div class="detail-emoji-decor">📋</div>
+                    <div class="detail-header">
+                        <h2 class="detail-title">📋 Выберите породу 📋</h2>
+                        <p>👆 Нажмите на любую породу слева, чтобы увидеть подробную информацию 👀</p>
+                    </div>
+                    
+                    <!-- Заполнение пространства -->
+                    <div class="fun-facts" style="margin: 15px 0; padding: 15px;">
+                        <h3>💡 Советы по выбору:</h3>
+                        <div class="facts-grid">
+                            <div class="fact">⭐ Для начинающих - короткошерстные</div>
+                            <div class="fact">💎 Для опытных - длинношерстные</div>
+                            <div class="fact">❤️ Для аллергиков - бесшерстные</div>
+                        </div>
+                    </div>
+                    
+                    <div id="detailContent">
+                        <div class="detail-image" style="background: linear-gradient(135deg, #FFE0B2, #FFB347); display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: #8B572A;">
+                                <div style="font-size: 3.5rem; margin-bottom: 15px;">🐹✨</div>
+                                <h3 style="font-size: 1.3rem;">🎯 Выберите породу морской свинки</h3>
+                                <p style="font-size: 0.95rem;">📖 Детальная информация появится здесь ✨</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Секция аксессуаров -->
+            <section class="accessories-section">
+                <div class="section-title">
+                    <i class="fas fa-shopping-basket"></i>
+                    <h2>🛍️ Аксессуары и приспособления 🛍️</h2>
+                </div>
+                
+                <!-- Заполнение пространства -->
+                <div class="fun-facts" style="background: #e3f2fd; border-color: #64b5f6; margin-bottom: 20px;">
+                    <h3>🛒 Что нужно для морской свинки:</h3>
+                    <div class="facts-grid">
+                        <div class="fact" style="background: #bbdefb;">🍽️ Качественный корм</div>
+                        <div class="fact" style="background: #bbdefb;">🏠 Просторная клетка</div>
+                        <div class="fact" style="background: #bbdefb;">💧 Автопоилка</div>
+                        <div class="fact" style="background: #bbdefb;">🎪 Игрушки</div>
+                    </div>
+                </div>
+                
+                <div class="accessories-filters">
+                    <button class="accessory-filter-btn active" data-accessory-filter="all">🛒 Все</button>
+                    <button class="accessory-filter-btn" data-accessory-filter="корма">🍽️ Корма</button>
+                    <button class="accessory-filter-btn" data-accessory-filter="наполнители">🌾 Наполнители</button>
+                    <button class="accessory-filter-btn" data-accessory-filter="домики">🏠 Домики</button>
+                    <button class="accessory-filter-btn" data-accessory-filter="игрушки">🎪 Игрушки</button>
+                    <button class="accessory-filter-btn" data-accessory-filter="уход">💅 Уход</button>
+                </div>
+                
+                <div class="accessories-grid" id="accessoriesGrid">
+                    <!-- Аксессуары будут загружены через JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Секция подписки -->
+            <section class="subscription-section">
+                <div class="subscription-content">
+                    <div class="subscription-header">
+                        <h2 class="subscription-title">📱 Подписывайтесь на нас в соцсетях! 🎥</h2>
+                        <div class="subscription-emoji">🐹❤️📸</div>
+                        <p class="subscription-subtitle">Если любите наблюдать за морскими свинками, присоединяйтесь к нашему сообществу!</p>
+                    </div>
+                    
+                    <div class="social-platforms">
+                        <div class="platform-card likee-card">
+                            <div class="platform-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h3 class="platform-title">Likee</h3>
+                            <p class="platform-desc">Короткие видео с забавными моментами из жизни морских свинок</p>
+                            <div class="platform-id">
+                                <i class="fas fa-user"></i>
+                                <span>ID: sushka1502</span>
+                            </div>
+                            <a href="https://likee.com/@sushka1502" target="_blank" class="subscribe-btn likee-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                Подписаться на Likee
+                            </a>
+                        </div>
+                        
+                        <div class="platform-card youtube-card">
+                            <div class="platform-icon">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <h3 class="platform-title">YouTube</h3>
+                            <p class="platform-desc">Полные видео, советы по уходу и обучающие ролики</p>
+                            <div class="platform-id">
+                                <i class="fas fa-user"></i>
+                                <span>ID: sushka-15s</span>
+                            </div>
+                            <a href="https://youtube.com/@sushka-15s" target="_blank" class="subscribe-btn youtube-btn">
+                                <i class="fab fa-youtube"></i>
+                                Подписаться на YouTube
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="subscription-note">
+                        <p>🎬 Новые видео каждую неделю! 🥕 Прямые эфиры, обучающие ролики и много милоты! 🐹✨</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Футер -->
+            <section class="creator-footer">
+                <div class="footer-emoji-decor">❤️</div>
+                <div class="creator-container">
+                    <h2 class="creator-title">
+                        <i class="fas fa-heart"></i>
+                        ❤️ О создателе ❤️
+                        <i class="fas fa-heart"></i>
+                    </h2>
+                    
+                    <p class="creator-subtitle">💕 С любовью к морским свинкам и заботе о них 💕</p>
+                    
+                    <div class="creator-info">
+                        <h3 class="creator-name">✨ Софья ✨</h3>
+                        <p class="creator-role">👑 Создатель сайта и хозяйка калифорнийской морской свинки 👑</p>
+                        
+                        <p class="creator-bio">
+                            🎀 Этот сайт создан с большой любовью к моей калифорнийской морской свинке Сушке. 
+                            🌟 Каждый день она приносит радость в наш дом, и я хочу поделиться знаниями о правильном 
+                            уходе за этими удивительными животными.
+                        </p>
+                        
+                        <p class="creator-bio">
+                            📚 Здесь собрана вся информация, которая поможет вам выбрать породу, 
+                            подобрать правильное питание и обеспечить лучший уход вашему питомцу.
+                        </p>
+                    </div>
+                    
+                    <div class="creator-signature">
+                        💌 С любовью, Софья и Сушка 🐹
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Данные пород с фотографиями и прикольными описаниями
+        const breedsData = [
+            {
+                id: 1,
+                name: "Калифорнийская 🎉",
+                type: "короткошерстные",
+                description: "✨ Яркая звездочка свин-мира! Самый солнечный питомец Калифорнии. 🎸 Свинка-позитивчик, которая заряжает энергией целый день! ☀️",
+                image: "https://images.unsplash.com/photo-1530016555861-5b32e663a3b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+                lifespan: "6-8 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Дружелюбный 🤝, активный ⚡, общительный 🗣️",
+                careLevel: "Низкий 😎",
+                tags: ["короткошерстные", "активные", "для начинающих"],
+                characteristics: {
+                    "Происхождение": "🇺🇸 США, Калифорния 🌴",
+                    "Вес": "800-1200 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "✨ Блестящая гладкая шерсть 💎",
+                    "Окрасы": "🌈 Разноцветная палитра радости",
+                    "Активность": "⚡ Энерджайзер в миниатюре",
+                    "Подходит для": "👶 Начинающих свин-родителей"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ 1 раз в неделю (легче легкого!)",
+                    "Купание": "🛁 По необходимости (редко)",
+                    "Стрижка": "✂️ Не требуется (ура!)",
+                    "Температура": "🌡️ 18-24°C (комфорт как в Калифорнии)",
+                    "Социализация": "💬 Очень важна (обожает компанию!)"
+                }
+            },
+            {
+                id: 2,
+                name: "Шелти 👑",
+                type: "длинношерстные",
+                description: "👑 Королевская особа свин-мира! Длинные локоны как у принцессы. 💅 Требует ухода, но благодарит лаской. 🎀 Свинка-модель с роскошной шубкой!",
+                image: "https://images.unsplash.com/photo-1578164253957-22b3a18d6c6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+                lifespan: "6-8 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Дружелюбный 🤝, ласковый 🥰, спокойный 😌",
+                careLevel: "Высокий 👑",
+                tags: ["длинношерстные", "спокойные", "для опытных"],
+                characteristics: {
+                    "Происхождение": "🇬🇧 Великобритания 🏰",
+                    "Вес": "800-1200 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "💎 Шелковистая шерсть (как у королевы!)",
+                    "Окрасы": "🎨 Любые (королевская палитра)",
+                    "Активность": "🏃‍♀️ Средняя (королевы не бегают)",
+                    "Подходит для": "👨‍🔬 Опытных свин-стилистов"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ Ежедневно (ритуал красоты!)",
+                    "Купание": "🛁 2 раза в год (королевская процедура)",
+                    "Стрижка": "✂️ По необходимости (парикмахер обязателен)",
+                    "Температура": "🌡️ 18-24°C (дворцовые условия)",
+                    "Социализация": "💬 Важна (королеве нужна свита)"
+                }
+            },
+            {
+                id: 3,
+                name: "Скинни 🦛",
+                type: "бесшерстные",
+                description: "🦛 Маленький бегемотик в мире свинок! Самый необычный питомец. 🥰 Теплый как грелочка, ласковый как плюшевая игрушка. 🌡️ Обожает обнимашки!",
+                image: "https://images.unsplash.com/photo-1579273166152-d7252c63f9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                lifespan: "5-7 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Ласковый 🥰, теплолюбивый 🔥, привязчивый 💕",
+                careLevel: "Высокий 👑",
+                tags: ["бесшерстные", "редкие", "для опытных"],
+                characteristics: {
+                    "Происхождение": "🇨🇦 Канада 🍁",
+                    "Вес": "800-1100 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "🦛 Без шерсти (мини-бегемотик!)",
+                    "Окрасы": "🎨 Разные цвета кожи (живая палитра)",
+                    "Активность": "🏃‍♀️ Средняя (бегемотик не спешит)",
+                    "Подходит для": "👨‍🔬 Опытных свин-энтузиастов"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ Не требуется (ура!)",
+                    "Купание": "🛁 1 раз в месяц (кожу беречь!)",
+                    "Стрижка": "✂️ Не требуется (стричь нечего!)",
+                    "Температура": "🌡️ 22-26°C (бегемотику нужно тепло!)",
+                    "Социализация": "💬 Очень важна (обожает компанию!)"
+                }
+            },
+            {
+                id: 4,
+                name: "Абиссинская 🌀",
+                type: "розеточные",
+                description: "🌀 Свинка-завитушка с характером! Розеточки как маленькие вихри. 🎢 Энергичный исследователь, любопытный как ребенок. 🔍 Найдет всё, что спрятано!",
+                image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                lifespan: "5-7 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Энергичный ⚡, любопытный 🤔, активный 🏃‍♀️",
+                careLevel: "Средний 😊",
+                tags: ["розеточные", "активные", "для опытных"],
+                characteristics: {
+                    "Происхождение": "🇬🇧 Великобритания 🏰",
+                    "Вес": "800-1100 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "🌀 8-10 розеток (природная укладка!)",
+                    "Окрасы": "🎨 Разнообразные (вихрь красок!)",
+                    "Активность": "⚡ Высокая (ураган энергии!)",
+                    "Подходит для": "👨‍🔬 Опытных свин-авантюристов"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ 2-3 раза в неделю (розетки любят уход)",
+                    "Купание": "🛁 2-3 раза в год (редко, но метко)",
+                    "Стрижка": "✂️ Не требуется (розетки сами по себе)",
+                    "Температура": "🌡️ 18-24°C (комфорт для исследователя)",
+                    "Социализация": "💬 Очень важна (нужен напарник по приключениям)"
+                }
+            },
+            {
+                id: 5,
+                name: "Рекс 🌟",
+                type: "короткошерстные",
+                description: "🌟 Свинка-плюшевый мишка! Шерсть кудрявая как у барашка. 🐑 Мягкая, пушистая, обнимательная. 🤗 Любит быть в центре внимания!",
+                image: "https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                lifespan: "5-7 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Ласковый 🥰, спокойный 😌, дружелюбный 🤝",
+                careLevel: "Средний 😊",
+                tags: ["короткошерстные", "кудрявые", "для начинающих"],
+                characteristics: {
+                    "Происхождение": "🇫🇷 Франция 🥐",
+                    "Вес": "900-1300 г ⚖️",
+                    "Длина тела": "22-27 см 📏",
+                    "Особенности": "🌟 Кудрявая шерсть (плюшевый мишка!)",
+                    "Окрасы": "🌈 Разнообразные (мягкая палитра)",
+                    "Активность": "🏃‍♀️ Средняя (плюшевый не спешит)",
+                    "Подходит для": "👶 Начинающих (идеальный первый питомец!)"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ 2 раза в неделю (кудряшки любят уход)",
+                    "Купание": "🛁 1-2 раза в год (плюш не любит воду)",
+                    "Стрижка": "✂️ Не требуется (кудри сами по себе)",
+                    "Температура": "🌡️ 18-24°C (плюшевый комфорт)",
+                    "Социализация": "💬 Важна (плюшевый любит компанию)"
+                }
+            },
+            {
+                id: 6,
+                name: "Тексель 🎀",
+                type: "длинношерстные",
+                description: "🎀 Свинка с кудрявыми локонами! Шерсть вьется от природы. 💃 Самая модная свинка в городе. 👗 Требует ухода, но выглядит потрясающе!",
+                image: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                lifespan: "5-7 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Ласковый 🥰, терпеливый 🙏, спокойный 😌",
+                careLevel: "Высокий 👑",
+                tags: ["длинношерстные", "кудрявые", "для опытных"],
+                characteristics: {
+                    "Происхождение": "🇬🇧 Великобритания 🏰",
+                    "Вес": "800-1200 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "🎀 Кудрявая длинная шерсть (природная завивка!)",
+                    "Окрасы": "🎨 Любые (парикмахерская палитра)",
+                    "Активность": "🏃‍♀️ Средняя (модель не бегает)",
+                    "Подходит для": "👨‍🔬 Опытных свин-стилистов"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ Ежедневно (кудри требуют внимания!)",
+                    "Купание": "🛁 1 раз в месяц (модельные процедуры)",
+                    "Стрижка": "✂️ По необходимости (стилист обязателен)",
+                    "Температура": "🌡️ 18-24°C (подиумные условия)",
+                    "Социализация": "💬 Важна (модель нуждается в публике)"
+                }
+            },
+            {
+                id: 7,
+                name: "Перуанская 👸",
+                type: "длинношерстные",
+                description: "👸 Принцесса с длинными волосами! Шерсть растет вперед. 💇‍♀️ Настоящая модель с природной стрижкой. ✨ Требует много ухода, но благодарит красотой!",
+                image: "https://images.unsplash.com/photo-1546971587-02375cbb1e4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                lifespan: "5-7 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Спокойный 😌, нежный 🥰, терпеливый 🙏",
+                careLevel: "Очень высокий 👑👑",
+                tags: ["длинношерстные", "редкие", "для экспертов"],
+                characteristics: {
+                    "Происхождение": "🇵🇪 Перу 🏔️",
+                    "Вес": "800-1200 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "👸 Длинная шерсть растет вперед (природная челка!)",
+                    "Окрасы": "🎨 Разнообразные (горная палитра)",
+                    "Активность": "🏃‍♀️ Низкая (принцесса не спешит)",
+                    "Подходит для": "👨‍🔬 Экспертов свин-ухода"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ 2 раза в день (принцессу нужно расчесывать!)",
+                    "Купание": "🛁 1 раз в месяц (королевская процедура)",
+                    "Стрижка": "✂️ Регулярно (чтобы видеть мир!)",
+                    "Температура": "🌡️ 18-22°C (горный климат)",
+                    "Социализация": "💬 Умеренная (принцесса избирательна)"
+                }
+            },
+            {
+                id: 8,
+                name: "Коронет 👑",
+                type: "длинношерстные",
+                description: "👑 Король свин-мира с короной! Розетка на голове как корона. 🎩 Длинная шерсть, царственная осанка. 💫 Сочетает красоту и характер!",
+                image: "https://images.unsplash.com/photo-1567177662142-20646e1b7c4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                lifespan: "5-7 лет ⏳",
+                size: "Средний 🐹",
+                temperament: "Уверенный 😎, дружелюбный 🤝, активный ⚡",
+                careLevel: "Высокий 👑",
+                tags: ["длинношерстные", "с короной", "для опытных"],
+                characteristics: {
+                    "Происхождение": "🇺🇸 США 🇬🇧 Великобритания",
+                    "Вес": "800-1200 г ⚖️",
+                    "Длина тела": "20-25 см 📏",
+                    "Особенности": "👑 Розетка на голове (природная корона!)",
+                    "Окрасы": "🎨 Любые (королевская палитра)",
+                    "Активность": "⚡ Средняя (король в движении)",
+                    "Подходит для": "👨‍🔬 Опытных свин-монархов"
+                },
+                care: {
+                    "Расчесывание": "💆‍♀️ Ежедневно (корону нужно беречь!)",
+                    "Купание": "🛁 1 раз в 2 месяца (королевская ванна)",
+                    "Стрижка": "✂️ По необходимости (стилист для короны)",
+                    "Температура": "🌡️ 18-24°C (дворцовый климат)",
+                    "Социализация": "💬 Важна (королю нужны подданные)"
+                }
+            }
+        ];
+
+        // Данные аксессуаров
+        const accessoriesData = [
+            {
+                id: 1,
+                name: "Little One Комбинированный корм",
+                brand: "Little One",
+                type: "корма",
+                description: "🥇 Лучший комбинированный корм с травами и зерновыми для полноценного питания",
+                image: "https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                details: {
+                    "Вес упаковки": "900 г",
+                    "Состав": "Травы, злаки, овощи",
+                    "Витамин C": "✅ Да",
+                    "Цена": "460 ₽"
+                },
+                features: ["🥕 Витамин C", "🌾 Клетчатка", "💎 Премиум", "🐹 Для всех пород"]
+            },
+            {
+                id: 2,
+                name: "Мое Зверье Гранулированный корм",
+                brand: "Мое Зверье",
+                type: "корма",
+                description: "💚 Натуральный гранулированный корм с витаминно-минеральным комплексом",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                details: {
+                    "Вес упаковки": "800 г",
+                    "Состав": "Гранулы, травы, овощи",
+                    "Витамин C": "✅ Да",
+                    "Цена": "420 ₽"
+                },
+                features: ["💊 Витамины", "🌿 Травы", "🥦 Овощи", "⭐ Качество"]
+            },
+            {
+                id: 3,
+                name: "Древесные опилки премиум",
+                brand: "Bio Comfort",
+                type: "наполнители",
+                description: "🌲 Мягкие древесные опилки с антибактериальной пропиткой",
+                image: "https://images.unsplash.com/photo-1566385101042-1a0f0c126c96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                details: {
+                    "Вес упаковки": "10 кг",
+                    "Материал": "Древесина хвойных",
+                    "Аромат": "Сосновый",
+                    "Цена": "890 ₽"
+                },
+                features: ["🌲 Хвойные", "🦠 Антибактериальные", "🌸 Аромат", "💧 Впитывание"]
+            },
+            {
+                id: 4,
+                name: "Домик-пещера",
+                brand: "Cosy Home",
+                type: "домики",
+                description: "🏠 Уютный домик-пещера из натурального дерева для уединения",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                details: {
+                    "Материал": "Натуральное дерево",
+                    "Размер": "25x20x15 см",
+                    "Цвет": "Натуральный",
+                    "Цена": "1200 ₽"
+                },
+                features: ["🏠 Уютный", "🌳 Дерево", "🛡️ Безопасный", "🎨 Натуральный"]
+            },
+            {
+                id: 5,
+                name: "Игровой лабиринт",
+                brand: "Fun Tunnels",
+                type: "игрушки",
+                description: "🎪 Набор тоннелей и переходов для активных игр",
+                image: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                details: {
+                    "Материал": "Пластик, ткань",
+                    "Длина": "2 м",
+                    "Диаметр": "10 см",
+                    "Цена": "850 ₽"
+                },
+                features: ["🎪 Лабиринт", "🏃‍♀️ Активность", "🧩 Разборный", "🎨 Яркий"]
+            },
+            {
+                id: 6,
+                name: "Набор для груминга",
+                brand: "Groom Pro",
+                type: "уход",
+                description: "💅 Профессиональный набор для ухода за шерстью и когтями",
+                image: "https://images.unsplash.com/photo-1593532847221-8c5336c8b0a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                details: {
+                    "В набор входит": "Щетка, когтерез",
+                    "Материал": "Металл, пластик",
+                    "Для пород": "Все",
+                    "Цена": "780 ₽"
+                },
+                features: ["💅 Груминг", "✂️ Когтерез", "💆‍♀️ Щетка", "⭐ Профессиональный"]
+            }
+        ];
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            renderBreeds();
+            renderAccessories();
+            setupEventListeners();
+            
+            if (breedsData.length > 0) {
+                selectBreed(breedsData[0].id);
+            }
+        });
+
+        // Рендер пород
+        function renderBreeds(filter = "all", searchQuery = "") {
+            const breedsGrid = document.getElementById('breedsGrid');
+            breedsGrid.innerHTML = '';
+            
+            let filteredBreeds = breedsData;
+            
+            if (filter !== "all") {
+                filteredBreeds = filteredBreeds.filter(breed => 
+                    breed.type === filter || 
+                    breed.tags.includes(filter)
+                );
+            }
+            
+            if (searchQuery.trim() !== "") {
+                const query = searchQuery.toLowerCase();
+                filteredBreeds = filteredBreeds.filter(breed => 
+                    breed.name.toLowerCase().includes(query) ||
+                    breed.type.toLowerCase().includes(query) ||
+                    breed.description.toLowerCase().includes(query) ||
+                    breed.temperament.toLowerCase().includes(query)
+                );
+            }
+            
+            // Эмодзи для каждой породы
+            const breedEmojis = ["🐹", "✨", "🎯", "⭐", "🌟", "🎉", "❤️", "🦛"];
+            
+            filteredBreeds.forEach((breed, index) => {
+                const breedCard = document.createElement('div');
+                breedCard.className = `breed-card`;
+                breedCard.dataset.id = breed.id;
+                breedCard.innerHTML = `
+                    <div class="breed-emoji">${breedEmojis[index % breedEmojis.length]}</div>
+                    <div class="breed-image" style="background-image: url('${breed.image}')">
+                        <div class="breed-type">${breed.type}</div>
+                    </div>
+                    <div class="breed-info">
+                        <div class="breed-name">
+                            ${breedEmojis[index % breedEmojis.length]} ${breed.name}
+                        </div>
+                        <p class="breed-description">${breed.description}</p>
+                        <div class="breed-stats">
+                            <div class="stat">
+                                <span class="stat-label">⏳ Продолжительность жизни</span>
+                                <span class="stat-value">${breed.lifespan}</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">💖 Уровень ухода</span>
+                                <span class="stat-value">${breed.careLevel}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                breedCard.addEventListener('click', () => selectBreed(breed.id));
+                breedsGrid.appendChild(breedCard);
+            });
+            
+            updateSearchResults(filteredBreeds.length);
+        }
+
+        // Рендер деталей породы с интересными фактами ПОСЛЕ информации
+        function renderBreedDetails(breedId) {
+            const breed = breedsData.find(b => b.id === breedId);
+            if (!breed) return;
+            
+            const detailContent = document.getElementById('detailContent');
+            detailContent.innerHTML = `
+                <div class="detail-image" style="background-image: url('${breed.image}')">
+                    <div class="breed-type">${breed.type}</div>
+                </div>
+                
+                <div class="breed-tags">
+                    ${breed.tags.map(tag => `<span class="breed-tag">🏷️ ${tag}</span>`).join('')}
+                </div>
+                
+                <div class="detail-content">
+                    <div class="detail-column">
+                        <h3>📊 Характеристики породы</h3>
+                        <ul class="characteristics-list">
+                            ${Object.entries(breed.characteristics).map(([key, value]) => `
+                                <li>
+                                    <span>${key}:</span>
+                                    <span>${value}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-column">
+                        <h3>💅 Уход и содержание</h3>
+                        <ul class="care-list">
+                            ${Object.entries(breed.care).map(([key, value]) => `
+                                <li>
+                                    <span>${key}:</span>
+                                    <span>${value}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- ИНТЕРЕСНЫЕ ФАКТЫ ПЕРЕМЕЩЕНЫ СЮДА - ПОСЛЕ ИНФОРМАЦИИ О СВИНКАХ -->
+                <div class="fun-facts" style="margin-top: 25px; padding: 18px;">
+                    <h3>🎭 Интересные факты об этой породе:</h3>
+                    <div class="facts-grid">
+                        <div class="fact">${getCharacterFact(breed.name)}</div>
+                        <div class="fact">${getFunFact(breed.name)}</div>
+                        <div class="fact">${getAdditionalFact(breed.name)}</div>
+                        <div class="fact">${getCareFact(breed.name)}</div>
+                    </div>
+                </div>
+            `;
+            
+            detailContent.classList.add('fade-in');
+            document.querySelector('.detail-title').textContent = `🐹 ${breed.name}`;
+        }
+
+        // Рендер аксессуаров
+        function renderAccessories(filter = "all") {
+            const accessoriesGrid = document.getElementById('accessoriesGrid');
+            accessoriesGrid.innerHTML = '';
+            
+            let filteredAccessories = accessoriesData;
+            
+            if (filter !== "all") {
+                filteredAccessories = filteredAccessories.filter(item => item.type === filter);
+            }
+            
+            // Эмодзи для каждого типа аксессуаров
+            const accessoryEmojis = {
+                "корма": "🍽️",
+                "наполнители": "🌾",
+                "домики": "🏠",
+                "игрушки": "🎪",
+                "уход": "💅",
+                "all": "🛍️"
+            };
+            
+            filteredAccessories.forEach(item => {
+                const accessoryCard = document.createElement('div');
+                accessoryCard.className = 'accessory-card';
+                accessoryCard.innerHTML = `
+                    <div class="accessory-emoji">${accessoryEmojis[item.type] || "🛍️"}</div>
+                    <div class="accessory-image" style="background-image: url('${item.image}')">
+                        <div class="accessory-brand">${item.brand}</div>
+                    </div>
+                    <div class="accessory-info">
+                        <div class="accessory-name">
+                            ${accessoryEmojis[item.type] || "🛍️"} ${item.name}
+                        </div>
+                        <p class="accessory-description">${item.description}</p>
+                        
+                        <div class="accessory-details">
+                            <h4>📋 Детали:</h4>
+                            <ul class="details-list">
+                                ${Object.entries(item.details).map(([key, value]) => `
+                                    <li>
+                                        <span>${key}:</span>
+                                        <span>${value}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="accessory-features">
+                            ${item.features.map(feature => `<span class="accessory-feature">${feature}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                accessoriesGrid.appendChild(accessoryCard);
+            });
+        }
+
+        // Выбор породы
+        function selectBreed(breedId) {
+            renderBreedDetails(breedId);
+            
+            // Удалить активный класс у всех карточек
+            document.querySelectorAll('.breed-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Добавить активный класс выбранной карточке
+            const selectedCard = document.querySelector(`.breed-card[data-id="${breedId}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('active');
+            }
+            
+            // Прокрутка на мобильных устройствах
+            if (window.innerWidth < 1025) {
+                document.querySelector('.breed-detail-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+        }
+
+        // Обновление результатов поиска
+        function updateSearchResults(count) {
+            const resultsCount = document.getElementById('resultsCount');
+            const searchResults = document.getElementById('searchResults');
+            
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.value.trim() !== "") {
+                resultsCount.textContent = `🎯 Найдено: ${count}`;
+                searchResults.classList.add('active');
+                
+                if (count === 0) {
+                    searchResults.innerHTML = `
+                        <div class="no-results">
+                            <div style="font-size: 2.5rem; margin-bottom: 15px;">😔</div>
+                            <h3>Ничего не найдено</h3>
+                            <p>🔍 Попробуйте изменить поисковый запрос</p>
+                        </div>
+                    `;
+                }
+            } else {
+                searchResults.classList.remove('active');
+            }
+        }
+
+        // Забавные факты о породах
+        function getCharacterFact(breedName) {
+            const facts = {
+                "Калифорнийская 🎉": "🎸 Обожает внимание и может 'петь' когда радуется!",
+                "Шелти 👑": "👑 Может обидеться если не уделять ей достаточно внимания!",
+                "Скинни 🦛": "🦛 Обожает спать на теплых коленках как живая грелка!",
+                "Абиссинская 🌀": "🌀 Любит исследовать каждый уголок в доме!",
+                "Рекс 🌟": "🌟 Обожает когда его гладят против шерсти!",
+                "Тексель 🎀": "🎀 Может ревновать к другим домашним питомцам!",
+                "Перуанская 👸": "👸 Требует чтобы с ней разговаривали как с принцессой!",
+                "Коронет 👑": "👑 Любит сидеть на возвышении как на троне!"
+            };
+            return facts[breedName] || "🐹 Любит морковку больше всего на свете!";
+        }
+
+        function getFunFact(breedName) {
+            const facts = {
+                "Калифорнийская 🎉": "☀️ Может 'танцевать' когда видит любимую еду!",
+                "Шелти 👑": "💅 Требует чтобы ее шерсть всегда была безупречной!",
+                "Скинни 🦛": "🔥 Носит свитер зимой - бегемотик мерзнет!",
+                "Абиссинская 🌀": "🎢 Обожает лабиринты и головоломки с едой!",
+                "Рекс 🌟": "🤗 Самый обнимательный порода - плюшевый мишка!",
+                "Тексель 🎀": "💃 Может позировать для фото как настоящая модель!",
+                "Перуанская 👸": "✨ Ее шерсть может вырасти до 50 см в длину!",
+                "Коронет 👑": "👑 Гордо носит свою корону и требует уважения!"
+            };
+            return facts[breedName] || "🥕 Может съесть морковку за 30 секунд!";
+        }
+
+        function getAdditionalFact(breedName) {
+            const facts = {
+                "Калифорнийская 🎉": "🎶 Издает более 10 разных звуков для общения!",
+                "Шелти 👑": "✨ Шерсть может сиять на солнце как шелк!",
+                "Скинни 🦛": "🌡️ Температура тела на 1-2°C выше, чем у других пород!",
+                "Абиссинская 🌀": "🎯 Розетки должны быть симметричными - это стандарт породы!",
+                "Рекс 🌟": "🤲 Шерсть на ощупь похожа на бархат или плюш!",
+                "Тексель 🎀": "💇‍♀️ Кудри не распрямляются даже после купания!",
+                "Перуанская 👸": "👑 Ее шерсть требует ежедневного ухода как у принцессы!",
+                "Коронет 👑": "⭐ Розетка на голове должна быть идеально круглой!"
+            };
+            return facts[breedName] || "💤 Спят с открытыми глазами, чтобы быть настороже!";
+        }
+
+        function getCareFact(breedName) {
+            const facts = {
+                "Калифорнийская 🎉": "🏃‍♀️ Нуждается в ежедневных прогулках вне клетки!",
+                "Шелти 👑": "💆‍♀️ Расчесывание - обязательный ежедневный ритуал!",
+                "Скинни 🦛": "🌡️ Не переносит сквозняков и низких температур!",
+                "Абиссинская 🌀": "🧩 Любит игрушки-головоломки с лакомствами!",
+                "Рекс 🌟": "🛁 Купать только в теплой воде и быстро сушить!",
+                "Тексель 🎀": "✨ Для шерсти нужны специальные шампуни!",
+                "Перуанская 👸": "💇‍♀️ Шерсть на мордочке нужно регулярно подстригать!",
+                "Коронет 👑": "👑 Корона требует особого внимания при расчесывании!"
+            };
+            return facts[breedName] || "🥬 Нуждается в свежих овощах каждый день!";
+        }
+
+        // Настройка обработчиков событий
+        function setupEventListeners() {
+            // Поиск
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function(e) {
+                renderBreeds("all", e.target.value);
+            });
+            
+            // Теги поиска
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    renderBreeds(filter, searchInput.value);
+                });
+            });
+            
+            // Фильтры аксессуаров
+            document.querySelectorAll('.accessory-filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.accessory-filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.accessoryFilter;
+                    renderAccessories(filter);
+                });
+            });
+            
+            // Сброс поиска при клике на заголовок
+            document.querySelector('h1').addEventListener('click', function() {
+                searchInput.value = '';
+                document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                renderBreeds();
+            });
+            
+            // Анимация кнопок подписки
+            document.querySelectorAll('.subscribe-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Анимация при клике
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
